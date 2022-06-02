@@ -36,3 +36,6 @@ Route::get('greeting',function(){
 
 Route::resource('obat','MedicineController');
 Route::resource('kategori_obat','CategoryController');
+Route::resource('transaksi','TransactionController');
+Route::resource('suppliers','SupplierController');
+Route::post('transactions/showDataAjax/','TransactionController@showAjax')->name('transaction.showAjax');

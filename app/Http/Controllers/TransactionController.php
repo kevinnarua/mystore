@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Transaction;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       $datas=Category::all();
-       return view ('category.index',compact('datas'));
+        $data=Transaction::with(
+            [
+                'user',
+                'buyer'
+            ]
+        )->get();
+                        
+        //dd($data);
+        return view('transaction.index',compact('data'));
     }
 
     /**
@@ -25,7 +32,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.baru');
+        //
     }
 
     /**
@@ -36,20 +43,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data=new Category();
-        $data->categories_name=$request->get('gname');
-        $data->description=$request->get('gdesc');
-        $data->save();
-        return redirect()->route('kategori_obat.index')->with('status','Supplier is added');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Transaction $transaction)
     {
         //
     }
@@ -57,10 +60,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Transaction $transaction)
     {
         //
     }
@@ -69,10 +72,10 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Transaction $transaction)
     {
         //
     }
@@ -80,11 +83,20 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Transaction $transaction)
     {
         //
+    }
+    public function showAjax(Request $request)
+    {
+        $id=($request->get('id'));
+        $data= Transaction::find($id);
+        $products=$data->products;
+        return response()->json(array(
+            'msg'=>view('transaction.showmodal',compact('data','dataProduk'))->render()
+        ),200);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Buyer;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class BuyerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       $datas=Category::all();
-       return view ('category.index',compact('datas'));
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.baru');
+        //
     }
 
     /**
@@ -36,20 +35,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data=new Category();
-        $data->categories_name=$request->get('gname');
-        $data->description=$request->get('gdesc');
-        $data->save();
-        return redirect()->route('kategori_obat.index')->with('status','Supplier is added');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Buyer  $buyer
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Buyer $buyer)
     {
         //
     }
@@ -57,10 +52,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Buyer  $buyer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Buyer $buyer)
     {
         //
     }
@@ -69,10 +64,10 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Buyer  $buyer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Buyer $buyer)
     {
         //
     }
@@ -80,10 +75,10 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Buyer  $buyer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Buyer $buyer)
     {
         //
     }

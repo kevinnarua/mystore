@@ -494,6 +494,11 @@ License: You must have a valid license purchased only from themeforest(the above
 					<span class="title">Master Category</span>
 				</a>
 				</li>
+				<a href="{{route('transaksi.index')}}">
+					<i class="icon-home"></i>
+					<span class="title">Transaction Master</span>
+				</a>
+				</li>
 				<li>
 				<a class="btn btn-default" data-toggle="modal" href="#abc">Disclaimer</a>
 				<div class="modal fade" id="abc" tabindex="-1" role="basic" aria-hidden="true">
@@ -520,63 +525,20 @@ License: You must have a valid license purchased only from themeforest(the above
 				</a>
 				</li>
 				<li >
-					<a href="javascript:;">
+					<a href="">
 					<i class="icon-puzzle"></i>
-					<span class="title">Page Layouts</span>
+					<span class="title">Master Suppliers</span>
 					<span class="arrow "></span>
 					</a>
-					<ul class="sub-menu">
-						<li>
-							<a href="layout_sidebar_fixed.html">
-							<i class="icon-anchor"></i>
-							Sidebar Fixed Page</a>
-						</li>
-						<li>
-							<a href="layout_sidebar_closed.html">
-							<i class="icon-book-open"></i>
-							Sidebar Closed Page</a>
-						</li>
-						<li>
-							<a href="layout_boxed_page.html">
-							<i class="icon-pin"></i>
-							Boxed Page</a>
-						</li>
-						<li>
-							<a href="layout_session_timeout.html">
-							<i class="icon-vector"></i>
-							<span class="badge badge-warning">new</span>Session Timeout</a>
-						</li>
-						<li>
-							<a href="layout_idle_timeout.html">
-							<i class="icon-cursor"></i>
-							User Idle Timeout</a>
-						</li>
-						<li>
-							<a href="layout_language_bar.html">
-							<i class="icon-rocket"></i>
-							Language Bar</a>
-						</li>
-						<li>
-							<a href="layout_disabled_menu.html">
-							<i class="icon-link"></i>
-							Disabled Menu Links</a>
-						</li>
-						<li>
-							<a href="layout_sidebar_reversed.html">
-							<i class="icon-settings"></i>
-							<span class="badge badge-success">new</span>Reversed Sidebar</a>
-						</li>
-						<li>
-							<a href="layout_blank_page.html">
-							<i class="icon-paper-clip"></i>
-							Blank Page</a>
-						</li>
-						<li>
-							<a href="layout_ajax.html">
-							<i class="icon-bubble"></i>
-							Content Loading via Ajax</a>
-						</li>
-					</ul>
+					
+				</li>
+				<li >
+					<a href="">
+					<i class="icon-puzzle"></i>
+					<span class="title">Create Suppliers</span>
+					<span class="arrow "></span>
+					</a>
+					
 				</li>
 				<li >
 					<a href="javascript:;">
@@ -913,6 +875,10 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div class="page-content">
 			@yield('content')
 			@yield('contentMed')
+			@yield('isitransaksi')
+			@yield('frmsupp')
+			@yield('isisupp')
+			@yield('frmctg')
 		</div>
 	</div>
 	<!-- END CONTENT -->
