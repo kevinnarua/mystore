@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Auth;
+use Carbon\Carbon;
 
 class TransactionController extends Controller
 {
@@ -98,5 +101,29 @@ class TransactionController extends Controller
         return response()->json(array(
             'msg'=>view('transaction.showmodal',compact('data','dataProduk'))->render()
         ),200);
+    }
+    public function form_submit_front()
+    {
+        $this->authorize('checkmember');
+        return view('frontend.checkout');
+    }
+    public function submit_form()
+    {
+        $this->authorize('checkmember');
+
+        $cart=session()->get('cart');
+        $user=Auth::user();
+        $t= new Transaction;
+        $t->user_id=$user->id;
+        $t->buyer_id=1;
+        $t->transaction_date=Carbon::now()->toDateTimeString();
+        $t->save();
+
+        $totalharga=$t->insertProduct($cart,$user);
+        $t->total=$totalharga;
+        $t->save();
+
+        session()->forget('cart');
+        return redirect('home');
     }
 }

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Transaction extends Model
 {
     public function user()
@@ -14,9 +15,18 @@ class Transaction extends Model
     {
         return $this->belongsTo('App\Buyer','buyer_id');
     }
-    public function medicines()
+    public function Medicine()
     {
-        return $this->belongsToMany('App\Medicines','medicine_transaction','transaction_id','medicine_id')
+        return $this->belongsToMany('App\Medicine','medicine_transaction','transaction_id','medicine_id')
         ->withPivot('quantity','price');
+    }
+    
+    public function insertProduct($cart, $user){
+        $total =0;
+        foreach($cart as $id =>$detail){
+            $total += $detail['price'] * $detail['quantity'];
+            $this->Medicine()->attach($id,['quantity' => $detail['quantity'],'subtotal'=>$detail['price']]);
+        }
+        return $total;
     }
 }

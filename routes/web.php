@@ -37,5 +37,14 @@ Route::get('greeting',function(){
 Route::resource('obat','MedicineController');
 Route::resource('kategori_obat','CategoryController');
 Route::resource('transaksi','TransactionController');
-Route::resource('suppliers','SupplierController');
+Route::resource('suppliers','SupplierController')->middleware('auth');
 Route::post('transactions/showDataAjax/','TransactionController@showAjax')->name('transaction.showAjax');
+Route::get('/','MedicineController@front_index');
+Route::get('cart','MedicineController@cart');
+Route::get('add-to-cart/{id}','MedicineController@addToCart');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/checkout','TransactionController@form_submit_front')->middleware(['auth']);
+Route::get('/submit_checkout','TransactionController@submit_form')->name('submitcheckout')->middleware(['auth']);
