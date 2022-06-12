@@ -48,3 +48,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/checkout','TransactionController@form_submit_front')->middleware(['auth']);
 Route::get('/submit_checkout','TransactionController@submit_form')->name('submitcheckout')->middleware(['auth']);
+Route::get('/home_transaction','TransactionController@list_transaction')->middleware(['auth']);

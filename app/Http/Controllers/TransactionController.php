@@ -124,6 +124,14 @@ class TransactionController extends Controller
         $t->save();
 
         session()->forget('cart');
-        return redirect('home');
+        return redirect('home_transaction');
+    }
+    public function list_transaction()
+    {
+        $this->authorize('checkmember');
+
+        $user=Auth::user();
+        $trans=Transaction::where('user_id',$user->id)->get();
+        return view('transaction.home',compact('trans'));
     }
 }
